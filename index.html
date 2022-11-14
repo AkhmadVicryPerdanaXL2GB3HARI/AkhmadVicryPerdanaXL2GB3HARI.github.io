@@ -1,145 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Game SEKARAT</title>
-<style>
-*{
-    text-align: center;
-    font-family: 'Inter';
-}
-body{
-    width: 1360px;
-    height: 500px;
-    margin-top: 8px;
-    background-image: url(frame2.png);
-    background-size: cover;
-    overflow-y: hidden;
-}
-div{
-    margin: 2% auto;
-}
-#UI{
-    animation: Abody 1s;
-}
-button{
-    /* Untuk Mengatur SEMUA Tombol  */
-    width: 282px;
-    height: 50px;
-    background: blue;
-    
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-}
-/* Untuk Mengatur Ukuran Pilihan Karakter */
-#pemain img{
-    height: 80px;
-    width: 200px;
-}
-#volume{
-    /* Untuk Mengatur Pengaturan VOLUME */
-    position: absolute;
-    width: 350px;
-    height: 250px;
-    top: 70%;
-    left: 51%;
-    transform: translate(-50%,-50%);
-    border-radius: 0px;
-    background: white;
-}
-.X{
-    /* Untuk Mengatur Tandak X Untuk Keluar Menu */
-    position: absolute;
-    left: 75%;
-    top: 5%;
-    font-size: 40px;
-    color: black;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 900;
-}
-input[type=range]{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    accent-color: black;
-    width: 300px;
-}
-#sinopsis{
-    /* Mengatur Hyperlink */
-    position: absolute;
-    top: 50px;
-    left: 90px;
-    font-size:x-large;
-}
-#restart{
-    /* Mengatur Jikalau Ingin Main Lagi Ketika sudah mati */
-    position: fixed;
-    width: 400px;
-    height: 250px;
-    top: 50%;
-    left: 51%;
-    transform: translate(-50%,-50%);
-    background: blueviolet;
-    animation: Arestart 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);;
-}
-canvas {
-    /* Garis pada kanvas */
-    border:1px solid black;
-}
-</style>
-</head>
-<body>
-    <div class="border">
+    <style>
+      * {
+        text-align: center;
+        font-family: "Inter";
+      }
+      body {
+        width: 1360px;
+        height: 500px;
+        margin-top: 8px;
+        background-image: url(frame2.png);
+        background-size: cover;
+        overflow-y: hidden;
+      }
+      div {
+        margin: 2% auto;
+      }
+      #UI {
+        animation: Abody 1s;
+      }
+      button {
+        /* Untuk Mengatur SEMUA Tombol  */
+        width: 282px;
+        height: 50px;
+        background: blue;
 
-        <!-- logo pada awal beranda -->
-        <div id="logo">
-            <img src="hantu0.png" style="width: 500px; height:350px">            
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 24px;
+      }
+      /* Untuk Mengatur Ukuran Pilihan Karakter */
+      #pemain img {
+        height: 80px;
+        width: 200px;
+      }
+      #volume {
+        /* Untuk Mengatur Pengaturan VOLUME */
+        position: absolute;
+        width: 350px;
+        height: 250px;
+        top: 70%;
+        left: 51%;
+        transform: translate(-50%, -50%);
+        border-radius: 0px;
+        background: white;
+      }
+      .X {
+        /* Untuk Mengatur Tandak X Untuk Keluar Menu */
+        position: absolute;
+        left: 75%;
+        top: 5%;
+        font-size: 40px;
+        color: black;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: 900;
+      }
+      input[type="range"] {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        accent-color: black;
+        width: 300px;
+      }
+      #sinopsis {
+        /* Mengatur Hyperlink */
+        position: absolute;
+        top: 50px;
+        left: 90px;
+        font-size: x-large;
+      }
+      #restart {
+        /* Mengatur Jikalau Ingin Main Lagi Ketika sudah mati */
+        position: fixed;
+        width: 400px;
+        height: 250px;
+        top: 50%;
+        left: 51%;
+        transform: translate(-50%, -50%);
+        background: blueviolet;
+        animation: Arestart 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      }
+      canvas {
+        /* Garis pada kanvas */
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="border">
+      <!-- logo pada awal beranda -->
+      <div id="logo">
+        <img src="hantu0.png" style="width: 500px; height: 350px" />
+      </div>
+      <!-- Menambahkan Karakter -->
+      <div id="pemain" style="display: none; color: rgba(66, 168, 173, 0.904)">
+        <h2>PILIH PEMAIN</h2>
+        <img src="hantu0.png" />
+        <img src="hantu1.png" />
+        <img src="hantu2.png" />
+      </div>
+      <!-- button level -->
+      <div id="level" style="display: none">
+        <button onclick="level(1)">LEVEL 1</button>
+        <button onclick="level(2)">LEVEL 2</button>
+        <button onclick="level(3)">LEVEL 3</button>
+      </div>
+      <div id="UI">
+        <!-- tombol awal beranda -->
+        <button onclick="memilihLevel()" style="margin-bottom: 2%">MULAI</button
+        ><br />
+        <button id="ABOUT" onclick="about()">ABOUT</button>
+      </div>
+      <div id="volume" style="display: none">
+        <span class="X">X</span><br />
+        <div id="volume1">
+          <!-- tombol  -->
+          <p style="font-size: 25px">PENGATURAN</p>
+          <h2><a>VOLUME</a></h2>
+          <input type="range" min="0" max="100" step="1" value="50" /><br />
         </div>
-        <!-- Menambahkan Karakter -->
-        <div id="pemain" style="display: none; color:rgba(66, 168, 173, 0.904)">
-            <h2>PILIH PEMAIN</h2>
-            <img src="hantu0.png">
-            <img src="hantu1.png">
-            <img src="hantu2.png">
+        <!-- Hyperlink sosmed creator -->
+        <div id="sinopsis" style="display: none">
+          <p><br /></p>
+          <p>
+            <a href="https://instagram.com/vickul_">Instagram</a>
+            <a href="https://github.com/AkhmadVicryPerdanaXL2GB3HARI">Github</a>
+          </p>
         </div>
-        <!-- button level -->
-        <div id="level" style="display: none;">
-            <button onclick="level(1)">LEVEL 1</button>
-            <button onclick="level(2)">LEVEL 2</button>
-            <button onclick="level(3)">LEVEL 3</button>
-        </div>
-        <div id="UI">
-            <!-- tombol awal beranda -->
-            <button onclick="memilihLevel()" style="margin-bottom: 2%;">MULAI</button><br>
-            <button id="ABOUT" onclick="about()">ABOUT</button>
-        </div>
-        <div  id="volume" style="display: none;" >
-            <span class="X">X</span><br>
-            <div id="volume1">
-                <!-- tombol  -->
-                <p style="font-size: 25px;">PENGATURAN</p>
-                <h2><A>VOLUME</A></h2>
-                <input type="range" min="0" max="100" step="1" value="50"><br>
-            </div>
-            <!-- Hyperlink sosmed creator -->
-            <div id="sinopsis" style="display: none;">
-                <p><br>
-                <P><a href="https://instagram.com/vickul_">Instagram</a>
-                <a href="https://github.com/AkhmadVicryPerdanaXL2GB3HARI">Github</a>
-            </div>
-        </div>
+      </div>
     </div>
     <!-- button mengulang game dan SCORE -->
-    <div id="restart" style="display: none;">
-        <h1>ANDA KURANG BERUNTUNG</h1>
-        <h1>SCORE:<span id="skor">0</span></h1>
-        <button onclick="startGame()">AYO COBA LAGI</button>
-    </div>  
+    <div id="restart" style="display: none">
+      <h1>ANDA KURANG BERUNTUNG</h1>
+      <h1>SCORE:<span id="skor">0</span></h1>
+      <button onclick="startGame()">AYO COBA LAGI</button>
+    </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
