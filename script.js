@@ -68,7 +68,7 @@ function startGame() {
     300,
     "image"
   );
-  myBackground = new component(1360, 600, "Frame2.png", 0, 0, "image");
+  myBackground = new component(1360, 600, "frame2.png", 0, 0, "image");
   myGamePiece.gravity = 0.05;
   myScore = new component("30px", "Inter", "antiquewhite", 30, 40, "text");
   myGameArea.start();
